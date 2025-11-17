@@ -121,7 +121,10 @@
         <button onclick="randomVideo()">Random</button>
 
         <div style="margin-top:12px;">
-          <iframe id="ytPlayer" height="260" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+          <iframe id="ytPlayer" height="260"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
 
@@ -140,10 +143,10 @@
       <!-- GAME -->
       <div class="box" style="margin-top:15px">
         <h2>Game</h2>
-        <button onclick="window.open('tictactoe.html','_blank')">TicTacToe</button>
-        <button onclick="window.open('snake.html','_blank')">Snake</button>
-        <button onclick="window.open('tetris.html','_blank')">Tetris</button>
-        <button onclick="window.open('flappy.html','_blank')">Flappy Bird</button>
+        <button onclick="playGame('tictactoe')">TicTacToe</button>
+        <button onclick="playGame('snake')">Snake</button>
+        <button onclick="playGame('tetris')">Tetris</button>
+        <button onclick="playGame('flappy')">Flappy Bird</button>
       </div>
 
     </div>
