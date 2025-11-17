@@ -1,7 +1,6 @@
 {
   "name": "kisahsuksespro-final",
   "version": "1.0.0",
-  "description": "Kisah Sukses Pro - Final Render-ready",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -9,14 +8,13 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "cors": "^2.8.5",
     "helmet": "^7.0.0",
-    "express-rate-limit": "^7.0.0",
-    "dotenv": "^16.4.5",
-    "node-fetch": "^3.3.2",
-    "groq-sdk": "^0.6.0"
+    "cors": "^2.8.5",
+    "express-rate-limit": "^6.8.0",
+    "groq-sdk": "^0.6.0",
+    "node-fetch": "^3.3.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   }
 }
