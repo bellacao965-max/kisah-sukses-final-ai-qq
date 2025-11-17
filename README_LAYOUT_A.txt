@@ -1,0 +1,1 @@
+Layout A applied and AI endpoints ensured. Update GROQ_API_KEY in Render environment variables and redeploy.

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kisah Sukses Pro — Full Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 { margin: 0 0 10px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1.2fr;
+      gap: 15px;
+    }
+
+    .box {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #ff9800;
+      color: white;
+      margin-top: 5px;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid">
+
+    <!-- ========================================== -->
+    <!-- LEFT COLUMN -->
+    <!-- ========================================== -->
+    <div>
+
+      <!-- AI ASSISTANT -->
+      <div class="box">
+        <h2>AI Assistant</h2>
+        <textarea id="userInput" rows="6" placeholder="Tulis pesan..."></textarea>
+        <button onclick="sendAI()">Kirim</button>
+        <div id="response" style="margin-top:10px;"></div>
+      </div>
+
+      <!-- GOOGLE SEARCH -->
+      <div class="box" style="margin-top:15px">
+        <h2>Google Search</h2>
+        <input id="gSearch" placeholder="Cari di Google...">
+        <button onclick="goGoogle()">Search</button>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CENTER COLUMN -->
+    <!-- ========================================== -->
+    <div>
+
+      <!-- INSTAGRAM -->
+      <div class="box">
+        <h2>Instagram Viewer</h2>
+        <input id="igUser" placeholder="Masukkan username IG">
+        <button onclick="openIG()">Open Instagram</button>
+      </div>
+
+      <!-- FACEBOOK -->
+      <div class="box" style="margin-top:15px">
+        <h2>Facebook Viewer</h2>
+        <input id="fbPage" placeholder="Nama halaman Facebook">
+        <button onclick="openFB()">Open Facebook</button>
+      </div>
+
+      <!-- TIKTOK -->
+      <div class="box" style="margin-top:15px">
+        <h2>TikTok Search</h2>
+        <input id="ttSearch" placeholder="Cari TikTok...">
+        <button onclick="goTikTok()">Search</button>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- RIGHT COLUMN -->
+    <!-- ========================================== -->
+    <div>
+
+      <!-- YOUTUBE -->
+      <div class="box">
+        <h2>YouTube Player + Search</h2>
+        <input id="ytSearch" placeholder="Cari video YouTube...">
+        <button onclick="searchYouTube()">Search</button>
+        <button onclick="randomVideo()">Random</button>
+
+        <div style="margin-top:12px;">
+          <iframe id="ytPlayer" height="260" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- CUACA -->
+      <div class="box" style="margin-top:15px">
+        <h2>Cuaca</h2>
+        <div id="weatherArea">Memuat...</div>
+      </div>
+
+      <!-- QUOTE -->
+      <div class="box" style="margin-top:15px">
+        <h2>Quote</h2>
+        <div id="quoteArea">Mengambil...</div>
+      </div>
+
+      <!-- GAME -->
+      <div class="box" style="margin-top:15px">
+        <h2>Game</h2>
+        <button onclick="window.open('tictactoe.html','_blank')">TicTacToe</button>
+        <button onclick="window.open('snake.html','_blank')">Snake</button>
+        <button onclick="window.open('tetris.html','_blank')">Tetris</button>
+        <button onclick="window.open('flappy.html','_blank')">Flappy Bird</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
