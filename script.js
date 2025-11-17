@@ -1,21 +1,7 @@
 /* ===========================================================
-   MENU TAB HANDLER
-   =========================================================== */
-document.querySelectorAll("#menu button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#menu button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const tab = btn.getAttribute("data-tab");
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    document.getElementById(tab).classList.add("active");
-  });
-});
-
-/* ===========================================================
    AI ASSISTANT
    =========================================================== */
-document.getElementById("sendBtn").addEventListener("click", async () => {
+async function sendAI() {
   const input = document.getElementById("userInput").value.trim();
   if (!input) return;
 
@@ -29,11 +15,55 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
     });
 
     const d = await r.json();
-    document.getElementById("response").innerText = d.reply || "Tidak ada response";
+    document.getElementById("response").innerText = d.reply || "Tidak ada balasan.";
   } catch (e) {
-    document.getElementById("response").innerText = "⚠ Error: " + e.message;
+    document.getElementById("response").innerText =
+      "⚠ Error: " + e.message;
   }
-});
+}
+
+/* ===========================================================
+   GOOGLE SEARCH
+   =========================================================== */
+function goGoogle() {
+  const q = document.getElementById("gSearch").value.trim();
+  if (!q) return;
+
+  window.open("https://www.google.com/search?q=" + encodeURIComponent(q), "_blank");
+}
+
+/* ===========================================================
+   INSTAGRAM VIEWER
+   =========================================================== */
+function openIG() {
+  const user = document.getElementById("igUser").value.trim();
+  if (!user) {
+    window.open("https://www.instagram.com", "_blank");
+    return;
+  }
+  window.open("https://www.instagram.com/" + user, "_blank");
+}
+
+/* ===========================================================
+   FACEBOOK VIEWER
+   =========================================================== */
+function openFB() {
+  const page = document.getElementById("fbPage").value.trim();
+  if (!page) {
+    window.open("https://m.facebook.com", "_blank");
+    return;
+  }
+  window.open("https://m.facebook.com/search/?query=" + encodeURIComponent(page), "_blank");
+}
+
+/* ===========================================================
+   TIKTOK VIEWER
+   =========================================================== */
+function goTikTok() {
+  const q = document.getElementById("ttSearch").value.trim();
+  const url = "https://www.tiktok.com/search?q=" + encodeURIComponent(q || "viral");
+  window.open(url, "_blank");
+}
 
 /* ===========================================================
    YOUTUBE PLAYER + SEARCH
@@ -41,71 +71,37 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
 const defaultVideos = [
   "dQw4w9WgXcQ",
   "3JZ_D3ELwOQ",
+  "fJ9rUzIMcZQ",
   "kXYiU_JCYtU",
-  "9bZkp7q19f0",
-  "fJ9rUzIMcZQ"
+  "9bZkp7q19f0"
 ];
 
 function loadVideo(id) {
-  document.getElementById("ytPlayer").src =
+  document.getElementById("ytPlayer").src = 
     "https://www.youtube.com/embed/" + id + "?rel=0&modestbranding=1";
 }
 
 function randomVideo() {
-  loadVideo(defaultVideos[Math.floor(Math.random() * defaultVideos.length)]);
+  const id = defaultVideos[Math.floor(Math.random() * defaultVideos.length)];
+  loadVideo(id);
 }
 
 function searchYouTube() {
   const q = document.getElementById("ytSearch").value.trim();
   if (!q) return randomVideo();
 
-  // Jika input ID video
   if (q.length === 11) {
     loadVideo(q);
     return;
   }
 
-  // Kalau teks → search YouTube
-  window.open(
-    "https://www.youtube.com/results?search_query=" + encodeURIComponent(q),
-    "_blank"
-  );
+  window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(q), "_blank");
 }
 
-setTimeout(randomVideo, 1000);
+setTimeout(randomVideo, 800);
 
 /* ===========================================================
-   TIKTOK VIEWER (lebih stabil)
-   =========================================================== */
-function loadTiktok(q = "viral") {
-  document.getElementById("ttArea").innerHTML = `
-    <iframe src="https://www.tiktok.com/search?q=${encodeURIComponent(q)}"
-      width="100%" height="500" style="border:none;border-radius:10px">
-    </iframe>`;
-}
-
-/* ===========================================================
-   INSTAGRAM VIEWER
-   =========================================================== */
-function loadIG() {
-  document.getElementById("igArea").innerHTML = `
-    <iframe src="https://www.instagram.com"
-      width="100%" height="500" style="border:none;border-radius:10px">
-    </iframe>`;
-}
-
-/* ===========================================================
-   FACEBOOK VIEWER
-   =========================================================== */
-function loadFB() {
-  document.getElementById("fbArea").innerHTML = `
-    <iframe src="https://m.facebook.com"
-      width="100%" height="500" style="border:none;border-radius:10px">
-    </iframe>`;
-}
-
-/* ===========================================================
-   QUOTE GENERATOR
+   QUOTE
    =========================================================== */
 function loadQuote() {
   fetch("/api/quote")
@@ -135,42 +131,18 @@ function loadWeather() {
 loadWeather();
 
 /* ===========================================================
-   GAME LOADER
+   GAME OPEN
    =========================================================== */
-function loadGame() {
-  document.getElementById("gameArea").innerHTML = `
-    <button onclick="playGame('flappy')">Flappy Bird</button><br><br>
-    <button onclick="playGame('snake')">Snake</button><br><br>
-    <button onclick="playGame('tetris')">Tetris</button><br><br>
-    <button onclick="playGame('tictactoe')">TicTacToe</button>
-  `;
-}
-
 function playGame(name) {
-  document.getElementById("gameArea").innerHTML = `
-    <iframe src="${name}.html" width="100%" height="500"
-      style="border:none;border-radius:10px"></iframe>`;
+  window.open(name + ".html", "_blank");
 }
 
-loadGame();
-
-/* ===========================================================
-   GOOGLE SEARCH
-   =========================================================== */
-function loadGoogle(q = "Berita trending") {
-  document.getElementById("googleArea").innerHTML = `
-    <iframe src="https://www.google.com/search?q=${encodeURIComponent(q)}"
-      width="100%" height="500" style="border:none;border-radius:10px">
-    </iframe>`;
-}
-
-/* ===========================================================
-   REGISTER FUNCTIONS → FIX PENTING!!!
-   =========================================================== */
-window.searchYouTube = searchYouTube;
+/* REGISTER */
+window.sendAI = sendAI;
+window.goGoogle = goGoogle;
+window.openIG = openIG;
+window.openFB = openFB;
+window.goTikTok = goTikTok;
 window.randomVideo = randomVideo;
-window.loadTiktok = loadTiktok;
-window.loadIG = loadIG;
-window.loadFB = loadFB;
+window.searchYouTube = searchYouTube;
 window.playGame = playGame;
-window.loadGoogle = loadGoogle;
